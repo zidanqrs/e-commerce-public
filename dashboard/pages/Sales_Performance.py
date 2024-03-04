@@ -84,9 +84,9 @@ if selected == "2016":
         n_orders = orders_2016['order_status'].count()
         st.metric("Total orders", value=n_orders)
     
-    #with col2:
-    #    total_revenue = format_currency(tingkat_penjualan_2016.payment_value.sum(), "AUD", locale='es_CO') 
-     #   st.metric("Total Revenue", value=total_revenue)
+    with col2:
+        n_income = orders_2016['payment_value'].sum()
+        st.metric("Total Income", value=n_income)
 
     with st.container():
         fig1 = go.Figure()
@@ -103,6 +103,9 @@ if selected == "2016":
         )
 
         st.plotly_chart(fig1)
+
+    with st.expander("Interpretation", expanded=False):
+        st.write('The most frequent order status is "delivered," followed by "canceled" and "invoiced." This suggests that in 2016, most orders were successfully delivered and invoiced. There are also a significant number of orders in "canceled" state, which means that a few portion of orders were cancel.')
 
   
     with st.container():
@@ -133,6 +136,9 @@ if selected == "2016":
 
         st.plotly_chart(fig3)
 
+    with st.expander('Interpretation', expanded=False):
+        st.write('The number of orders seems to fluctuate throughout the three months, with October having the most orders placed at around 350. The income generated follows a similar trend, with October having the highest income at around $60,000.')
+
 elif selected == "2017":
     orders_2017 = orders_merge[orders_merge['Year'] == 2017]
     orders_2017['year_month'] =orders_2017['order_purchase_timestamp'].apply(to_year_month)
@@ -149,6 +155,10 @@ elif selected == "2017":
         n_orders = orders_2017['order_status'].count()
         st.metric("Total orders", value=n_orders)
 
+    with col2:
+        n_income = orders_2017['payment_value'].sum()
+        st.metric("Total Income", value=n_income)
+
     with st.container():
         fig1 = go.Figure()
 
@@ -164,6 +174,9 @@ elif selected == "2017":
         )
 
         st.plotly_chart(fig1)
+    
+    with st.expander('Interpretation', expanded=False):
+        st.write('The most frequent order status is "delivered", followed by "shipped" and "unavailable". This suggests that in 2017, most orders were successfully delivered. There are also a significant number of orders in "shipped" state.')
 
     with st.container():
         fig2 = go.Figure()
@@ -185,13 +198,17 @@ elif selected == "2017":
         fig3 = px.line(total_income, x="year_month", y="payment_value")
         
         fig3.update_layout(
-            title='Total Income E-Commerce in 2016-2018',
+            title='Total Income E-Commerce in 2017',
             xaxis_title='Date',
             yaxis_title='Income',
             template='plotly_white',
         )
 
         st.plotly_chart(fig3)
+
+    with st.expander('Interpretation', expanded=False):
+        st.write('The graph shows that the number of orders fluctuated throughout the year, with November having the highest number of orders (around 7,800) and January having the lowest (around 850).\nNovember having the highest income (around \$1.2 million) and January having the lowest (around \$0.4 million).')
+
 
 elif selected == "2018":
     orders_2018 = orders_merge[orders_merge['Year'] == 2018]
@@ -209,6 +226,10 @@ elif selected == "2018":
         n_orders = orders_2018['order_status'].count()
         st.metric("Total orders", value=n_orders)
 
+    with col2:
+        n_income = orders_2018['payment_value'].sum()
+        st.metric("Total Income", value=n_income)
+
     with st.container():
         fig1 = go.Figure()
 
@@ -224,6 +245,9 @@ elif selected == "2018":
         )
 
         st.plotly_chart(fig1)
+
+    with st.expander('Interpretation', expanded=False):
+        st.write('The most frequent order status is "delivered," followed by "shipped" and "canceled." This suggests that in 2018, most orders were successfully shipped and invoiced. There are also a significant number of orders in "canceled" state, which means that a few portion of orders were canceled.')
 
     with st.container():
         fig2 = go.Figure()
@@ -245,13 +269,15 @@ elif selected == "2018":
         fig3 = px.line(total_income, x="year_month", y="payment_value")
         
         fig3.update_layout(
-            title='Total Income E-Commerce in 2016-2018',
+            title='Total Income E-Commerce in 2018',
             xaxis_title='Date',
             yaxis_title='Income',
             template='plotly_white',
         )
 
         st.plotly_chart(fig3)
+    with st.expander('Interpretation', expanded=False):
+        st.write('This chart illustrates the growth of e-commerce in 2018, displaying the number of orders placed and revenue generated. While there were fluctuations throughout the year, both metrics showed peaks in March, April, and May, the highest number of orders (around 7,000) and the highest revenue (around $1.2 million). This trend shows a positive correlation between order volume and revenue, indicating that periods with increased online shopping activity result in higher revenue. However, it is very important to remember that this data represents one year, and broader conclusions regarding long-term trends or specific influencing factors cannot be drawn from this graph alone.')
 
 elif selected == "All":
     orders_all = orders_merge
@@ -269,6 +295,10 @@ elif selected == "All":
         n_orders = orders_all['order_status'].count()
         st.metric("Total orders", value=n_orders)
 
+    with col2:
+        n_income = orders_all['payment_value'].sum()
+        st.metric("Total Income", value=n_income)
+
     with st.container():
         fig1 = go.Figure()
 
@@ -284,6 +314,8 @@ elif selected == "All":
         )
 
         st.plotly_chart(fig1)
+    with st.expander('Interpretation', expanded=False):
+        st.write('The most frequent order status is "delivered", followed by "shipped" and "canceled". This suggests that in 2016-2018, most orders were successfully delivered. There are also a significant number of orders in "shipped" state.')
 
     with st.container():
         fig2 = go.Figure()
@@ -312,4 +344,6 @@ elif selected == "All":
         )
 
         st.plotly_chart(fig3)
-
+    
+    with st.expander('Interpretation', expanded=False):
+        st.write('This chart illustrates the growth of e-commerce in 2016-2018, displaying the number of orders placed and revenue generated. There were fluctuations from December 2016 to November 2017 (approximately 7,800) and the highest revenue (approximately $1.2 million). This trend shows a positive correlation between order volume and revenue, indicating that periods with increased online shopping activity result in higher revenue.')
