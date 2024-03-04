@@ -8,9 +8,9 @@ This project was done in order to participate in the MSIB program at Kampus Merd
 
 ## Setup Environment
 ### Modules that need to be installed
-'''
+```
 pip install numpy pandas  matplotlib plotly jupyter streamlit streamlit-option-menu
-'''
+```
 ### Run streamlit app
 ```
 streamlit run dashboard/Dashboard.py
