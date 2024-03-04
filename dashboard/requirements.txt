@@ -4,5 +4,4 @@ matplotlib
 plotly
 altair
 Pillow
-os
 streamlit
