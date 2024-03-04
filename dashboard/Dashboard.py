@@ -24,6 +24,7 @@ with st.sidebar:
     selected = option_menu(
         menu_title="DASHBOARD",
         options=["Homepage","Dataset Overview","About"],
+        
     )
 
 if selected == "Homepage":
@@ -33,7 +34,7 @@ if selected == "Homepage":
     image = Image.open(img_path)
     resized_image = image.resize((1000, 750))
     with cent_co:
-        st.image(resized_image, caption='E-Comerce Analysis Dashboard', )
+        st.image(resized_image )
 
     col1, col2 = st.columns(2)
 
